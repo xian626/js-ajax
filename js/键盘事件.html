@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        div {
+            background: #000;
+            height: 100px;
+            width: 100px;
+            position: absolute;
+            top: 0px;
+            left: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        var div = document.querySelector('div');
+        var x = 0,
+            y = 0;
+        console.log(window.innerHeight);
+        console.log(window.innerWidth);
+        document.addEventListener('keydown', function(e) {
+            end_x = window.innerWidth;
+            end_y = window.innerHeight;
+            if (e.keyCode === 87) {
+                y -= 10;
+                if (y <= 0) {
+                    y = end_y - 100
+                }
+                console.log('w');
+                div.style.top = y + 'px';
+            }
+            if (e.keyCode === 65) {
+                x -= 10;
+                if (x <= -10) {
+                    x = end_x - 100;
+                }
+                console.log('a');
+                div.style.left = x + 'px';
+
+            }
+            if (e.keyCode === 83) {
+                y += 10;
+                if (y >= end_y - 90) {
+                    y = 0
+                }
+                console.log('s');
+                div.style.top = y + 'px';
+            }
+            if (e.keyCode === 68) {
+                x += 10;
+                if (x >= end_x - 90) {
+                    x = 0;
+                }
+                console.log('d');
+                div.style.left = x + 'px';
+            }
+        })
+    </script>
+</body>
+
+</html>

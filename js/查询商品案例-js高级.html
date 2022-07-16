@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .all {
+        width: 1000px;
+        margin: 0px auto;
+        text-align: center;
+    }
+    
+    .body {
+        margin: auto;
+        /* background: #000; */
+        display: inline-block;
+        text-align: center;
+    }
+    
+    .body table {
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+    
+    .body table td {
+        /* margin-top: 10px; */
+        width: 100px;
+        border: 1px solid black;
+    }
+</style>
+
+<body>
+    <div class="all">
+        <div class="head">按价格查询：<input type="text" class="first">~<input type="text" class="end"><button class="search_price">查询</button>按商品名称查询：
+            <input type="text" class="name"> <button class="search_name">查询</button></div>
+        <div class="body">
+            <table>
+                <thead>
+                    <td>id </td>
+                    <td>产品名称</td>
+                    <td>价格</td>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+<script>
+    var data = [{
+        id: 1,
+        name: '小米',
+        price: 2999,
+    }, {
+        id: 2,
+        name: '华为',
+        price: 3999,
+    }, {
+        id: 3,
+        name: '苹果',
+        price: 4999,
+    }, {
+        id: 4,
+        name: '三星',
+        price: 1999,
+    }];
+    var tbody = document.querySelector('tbody');
+    var first_price = document.querySelector('.first');
+    var end_price = document.querySelector('.end');
+    var name_1 = document.querySelector('.name');
+    var search_price = document.querySelector('.search_price');
+    var search_name = document.querySelector('.search_name')
+    console.log(tbody);
+    setdata(data);
+
+    function setdata(mydata) {
+        mydata.forEach(function(value) {
+            var tr = document.createElement('tr');
+            tr.innerHTML = '<td>' + value.id + '</td><td>' + value.name + '</td><td>' + value.price + '</td>'
+            tbody.appendChild(tr);
+        });
+    }
+
+    search_price.onclick = function() {
+        tbody.innerHTML = ''
+        var newdata = data.filter(function(value) {
+            return value.price >= first_price.value && value.price <= end_price.value;
+        })
+        setdata(newdata)
+    }
+    search_name.onclick = function() {
+        tbody.innerHTML = '';
+        var arry = [];
+        data.some(function(value) {
+            if (value.name === name_1.value) {
+                // console.log(11);
+                arry.push(value)
+                return true;
+            }
+        });
+        setdata(arry);
+    }
+</script>
+
+</html>

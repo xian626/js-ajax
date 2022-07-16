@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <script>
+        class Father {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                var btn = document.querySelector('button');
+                btn.onclick = function() {
+                    console.log(x + y);
+                };
+            }
+            add() {
+                console.log(this);
+            }
+        }
+        class Son extends Father {
+            constructor(x, y) {
+                super(x, y)
+                    // this.x = x;
+                    // this.y = y;
+            }
+
+        }
+        var djx = new Son(1, 2);
+        // djx.add();
+    </script>
+</body>
+
+</html>

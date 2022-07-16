@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px
+    }
+    
+    .all {
+        height: 50px;
+        /* background: blue; */
+        width: 700px;
+        margin: 100px auto;
+        position: relative;
+    }
+    
+    .d1 {
+        position: absolute;
+        /* float: left; */
+        height: 50px;
+        width: 100px;
+        background: rgb(227, 127, 143);
+        /* opacity: 0.5; */
+    }
+    
+    .ul li {
+        position: relative;
+        display: block;
+        float: left;
+        width: 100px;
+        /* background: #cccc; */
+        background: rgba(119, 255, 0, 0.5);
+        z-index: 9;
+        /* opacity: 0.5; */
+        line-height: 50px;
+        text-align: center;
+    }
+</style>
+<script src="js/动画.js"></script>
+
+
+<body>
+    <div class="all">
+        <div class="d1"></div>
+        <ul class="ul">
+            <li>00001</li>
+            <li>00002</li>
+            <li>00003</li>
+            <li>00004</li>
+            <li>00005</li>
+            <li>00006</li>
+            <li>00007</li>
+        </ul>
+    </div>
+</body>
+<script>
+    var all = document.querySelector('.all');
+    var d1 = document.querySelector('.d1');
+    var li = document.querySelector('.ul').querySelectorAll('li');
+    var start;
+    li[0].style.color = 'pink';
+    for (var i = 0; i < li.length; i++) {
+        li[i].addEventListener('mouseover', function() {
+            animate(d1, this.offsetLeft)
+        })
+        li[i].addEventListener('mouseleave', function() {
+            animate(d1, start)
+        })
+        li[i].addEventListener('click', function() {
+            start = this.offsetLeft;
+            for (var i = 0; i < li.length; i++) {
+                li[i].style.color = 'black';
+            }
+            this.style.color = 'pink';
+        })
+    }
+</script>
+
+</html>

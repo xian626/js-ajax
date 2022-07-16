@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border: 1px solid black;
+            margin: 100px auto;
+            text-align: center;
+            border-collapse: collapse;
+            width: 500px;
+        }
+        
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>姓名</td>
+                <td>性别</td>
+                <td>科目</td>
+                <td>成绩</td>
+                <td>操作</td>
+            </tr>
+            <tbody>
+            </tbody>
+        </thead>
+    </table>
+    <script>
+        var data = [{
+            姓名: 1,
+            性别: '男',
+            科目: 'js',
+            成绩: 70,
+        }, {
+            姓名: 2,
+            性别: '女',
+            科目: 'js',
+            成绩: 60,
+        }, {
+            姓名: 3,
+            性别: '男',
+            科目: 'js',
+            成绩: 50,
+        }, {
+            姓名: 4,
+            性别: '女',
+            科目: 'js',
+            成绩: 90,
+        }, {
+            姓名: 5,
+            性别: '女',
+            科目: 'js',
+            成绩: 90,
+        }];
+        var tbody = document.querySelector('tbody');
+        for (var i = 0; i < data.length; i++) {
+            var tr = document.createElement('tr');
+            for (k in data[i]) {
+                var td = document.createElement('td');
+                td.innerHTML = data[i][k];
+                tr.appendChild(td);
+            }
+            var td = document.createElement('td');
+            td.innerHTML = '<a href="javascript:;">删除</a>';
+            tr.appendChild(td);
+            tbody.appendChild(tr);
+        }
+        var as = document.querySelectorAll('a');
+        for (var i = 0; i < as.length; i++) {
+            as[i].onclick = function() {
+                tbody.removeChild(this.parentNode.parentNode);
+            }
+        }
+    </script>
+</body>
+
+</html>

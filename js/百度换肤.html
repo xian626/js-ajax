@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            height: 60px;
+            width: 70px;
+        }
+        
+        div {
+            margin: 0px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="img/1.gif">
+        <img src="img/2.gif">
+        <img src="img/3.gif">
+        <img src="img/4.gif">
+        <img src="img/5.gif">
+        <img src="img/6.gif">
+    </div>
+
+    <script>
+        var img = document.querySelectorAll('img');
+        var body = document.querySelector('body');
+        for (var i = 0; i < img.length; i++) {
+            img[i].onclick = function() {
+                body.style.background = 'url(' + this.src + ')';
+                console.log('111');
+            }
+        }
+    </script>
+</body>
+
+</html>

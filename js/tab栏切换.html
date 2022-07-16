@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            display: inline;
+            border: solid 1px;
+            margin-left: 0px;
+            /* float: left; */
+            padding: 2px;
+        }
+        
+        .l1 {
+            background: pink;
+        }
+        
+        div {
+            margin-left: 50px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li class="l1">1111</li>
+        <li>2222</li>
+        <li>3333</li>
+        <li>4444</li>
+    </ul>
+    <div>
+        11111
+    </div>
+    <div>
+        22222
+    </div>
+    <div>
+        33333
+    </div>
+    <div>
+        44444
+    </div>
+    <script>
+        var lis = document.querySelectorAll('li');
+        var divs = document.querySelectorAll('div');
+        for (var i = 0; i < lis.length; i++) {
+            lis[i].setAttribute('index', i);
+            lis[i].onclick = function() {
+                for (var i = 0; i < lis.length; i++) {
+                    lis[i].className = '';
+                    console.log('i');
+                    divs[i].style.display = 'none'
+                }
+                this.className = 'l1';
+                var index = this.getAttribute('index');
+                divs[index].style.display = 'block';
+
+            }
+        }
+    </script>
+</body>
+
+</html>

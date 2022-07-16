@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    img {
+        height: 50px;
+        width: 50px;
+        position: absolute;
+        display: none;
+    }
+</style>
+
+<body>
+    <img src="img/1.gif">
+    <button>开始</button>
+    <script>
+        var img = document.querySelector('img');
+        var btn = document.querySelector('button');
+        btn.addEventListener('click', fn)
+
+        function fn() {
+            img.style.display = 'block';
+            btn.style.display = 'none';
+            document.addEventListener('mousemove', function(e) {
+                img.style.top = e.clientY - 25 + 'px';
+                img.style.left = e.clientX - 25 + 'px';
+            })
+        }
+    </script>
+</body>
+
+</html>

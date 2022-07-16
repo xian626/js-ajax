@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/template-web.js"></script>
+    <script src="js/jq.js"></script>
+    <style>
+        *{
+            margin: 0px auto;
+            padding: 0px;
+        }
+        .all{
+            height: 500px;
+            width: 400px;
+            margin: 100px auto;
+            padding: 0px
+        }
+        .all input{
+            width: 300px;
+            border: 2px #f03726 solid;
+            height: 20px;
+            padding: 5px;
+        }
+        .all input:focus{
+           outline: none;
+        }
+        .all button{
+            width: 60px;
+            height: 32px;
+            border:2px #f03726  solid;
+            background-color:#f03726;
+            color: white;
+        }
+        .suggest-list{
+            border: 1px solid rgb(163, 149, 149);
+            width: 314px;
+            float:left;
+            font-size: 1px;
+        }
+        .suggest-iteam{
+            line-height: 30px;
+            padding-left: 5px;
+        }
+        .suggest-iteam:hover{
+        background-color: #eee;
+        cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="all" id="all">
+        <input type="text" id="ipt">
+        <button>搜索</button>
+        <div id="suggest-list" class="suggest-list">
+        </div>
+    </div>
+<script type="text/html" id="tpl-suggestList">
+        {{each result}}
+        <div class="suggest-iteam" id="suggest-iteam">{{$value[0]}}</div>
+        {{/each}}
+</script>
+<script>
+    $(function(){
+        var time=null;
+        var cacheObj=[];
+        function debounceSearch(kw){
+            time=setTimeout(function(){
+                if(cacheObj[kw]){
+                return renderSuggestList(cacheObj[kw]);
+                }
+                getSuggessList(kw);
+            },500);
+        }
+        $('#suggest-list').empty().hide();
+        //键盘事件
+        $('#ipt').on('keyup',function(){
+            clearTimeout(time)
+            var keyword=$(this).val().trim();
+            if(keyword.length <= 0)
+            {    
+               return $('#suggest-list').empty().hide()
+            }
+           if(cacheObj[keyword]){
+            return renderSuggestList(cacheObj[keyword]);
+           }
+            debounceSearch(keyword);
+        })
+        //JSONP请求
+        function getSuggessList(kw){
+            $.ajax({
+            url:'https://suggest.taobao.com/sug?q='+kw,
+            dataType:'jsonp',
+            success:function(res){
+                renderSuggestList(res)
+            }
+            
+           })
+        }
+        //渲染UI结构
+        function renderSuggestList(res){
+            if(res.result.length<=0){
+                return $('#suggest-list').empty().hide()
+            }
+            var htmlStr=template('tpl-suggestList',res)
+            $('#suggest-list').html(htmlStr).show()
+            var k=$("#ipt").val().trim();
+            cacheObj[k]=res;
+
+        }
+    })
+</script>
+</body>
+</html>

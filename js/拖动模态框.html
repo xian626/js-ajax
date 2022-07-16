@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .all {
+        height: 300px;
+        width: 300px;
+        background-color: blue;
+        position: absolute;
+        left: 40%;
+        top: 20%;
+    }
+    
+    .head {
+        margin-top: 0px;
+        height: 50px;
+        width: 300px;
+        background-color: blueviolet;
+    }
+</style>
+
+<body>
+    <div class="all">
+        <div class="head"></div>
+    </div>
+    <script>
+        var all = document.querySelector('.all');
+        var head = document.querySelector('.head');
+        // onmousedown onmousemove onmouseup
+        head.addEventListener('mousedown', function(e) {
+            x = e.clientX - all.offsetLeft
+            y = e.clientY - all.offsetTop;
+            head.addEventListener('mousemove', fn);
+
+            function fn(e) {
+                var height = e.clientY - y,
+                    width = e.clientX - x;
+                all.style.top = height + 'px';
+                all.style.left = width + 'px';
+            }
+            head.addEventListener('mouseup', function() {
+                head.removeEventListener('mousemove', fn)
+            })
+        })
+    </script>
+</body>
+
+</html>

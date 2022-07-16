@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .d1 {
+        height: 300px;
+        width: 300px;
+        float: auto;
+        margin-top: 100px;
+        position: absolute;
+        background-image: url(img/10.jpg);
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+    }
+    
+    .d1_1 {
+        height: 150px;
+        width: 150px;
+        background-color: yellow;
+        opacity: 0.5;
+        display: none;
+        position: relative;
+        cursor: move;
+    }
+    
+    .d2 {
+        height: 400px;
+        width: 400px;
+        float: left;
+        margin-left: 310px;
+        margin-top: 100px;
+        overflow: hidden;
+        background: red;
+        display: none;
+    }
+    
+    img {
+        position: relative;
+    }
+</style>
+
+<body>
+    <div class="d1">
+        <div class="d1_1"></div>
+    </div>
+    <div class="d2">
+        <img src="img/10_1.png" alt="">
+    </div>
+
+</body>
+<script>
+    var d1 = document.querySelector('.d1');
+    var img = document.querySelector('img');
+    var d1_1 = document.querySelector('.d1_1');
+    var d2 = document.querySelector('.d2');
+    d1.addEventListener('mouseover', function(e) {
+        d1_1.style.display = 'block';
+        d2.style.display = 'block';
+    });
+    d1.addEventListener('mouseout', function(e) {
+            d1_1.style.display = 'none';
+            d2.style.display = 'none';
+        })
+        // var stratx = img.offsetTop;
+        // var straty = img.offsetLeft;
+        // console.log(stratx + ' ' + straty);
+    d1.addEventListener('mouseover', function(e) {
+        var x = e.pageX - d1.offsetLeft - d1_1.offsetWidth / 2;
+        var y = e.pageY - d1.offsetTop - d1_1.offsetHeight / 2;
+        console.log(x + ' ' + y);
+        if (x <= 0) {
+            x = 0;
+        } else if (x >= d1.offsetWidth - d1_1.offsetWidth) {
+            x = d1.offsetWidth - d1_1.offsetWidth;
+        }
+        if (y <= 0) {
+            y = 0;
+        } else if (y >= d1.offsetHeight - d1_1.offsetHeight) {
+            y = d1.offsetHeight - d1_1.offsetHeight;
+        }
+        d1_1.style.left = x + 'px';
+        d1_1.style.top = y + 'px';
+        var img_x = d2.offsetLeft - img.offsetLeft;
+        var X = (x * img.offsetWidth) / d1.offsetWidth;
+        var Y = (y * img.offsetHeight) / d1.offsetHeight;
+        img.style.left = -X + 'px';
+        img.style.top = -Y + 'px';
+        // console.log(X + ' ' + Y);
+    });
+    //在小盒子里移动时小盒子不跟随?????????????????????????????????????????????
+</script>
+
+</html>

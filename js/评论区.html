@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<style>
+    textarea {
+        width: 500px;
+        height: 100px;
+        border: 1px solid red;
+    }
+    
+    li {
+        list-style: none;
+        border-bottom: 1px blue solid;
+        width: 500px;
+        margin-top: 10px;
+        height: 30px;
+    }
+    
+    a {
+        float: right;
+    }
+</style>
+
+<body>
+    <textarea cols="60" rows="4"></textarea>
+    <button>提交</button>
+    <div></div>
+</body>
+<script>
+    var btn = document.querySelector('button');
+    var text = document.querySelector('textarea');
+    var div = document.querySelector('div');
+    btn.addEventListener('click', function() {
+        if (text.value == '') {
+            alert('请输入内容');
+        } else {
+            var new_li = document.createElement('li')
+            var new_a = document.createElement('a');
+            var a_text = document.createTextNode('删除');
+            var text_1 = document.createTextNode(text.value);
+            new_a.appendChild(a_text)
+            new_li.appendChild(text_1);
+            new_li.appendChild(new_a);
+            div.insertBefore(new_li, div.firstChild);
+            text.value = '';
+            new_a.addEventListener('click', function() {
+                div.removeChild(this.parentNode)
+                console.log('111');
+            })
+        }
+    })
+</script>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮</button>
+    <div></div>
+</body>
+<script>
+    var btn = document.querySelector('button');
+    var div = document.querySelector('div');
+    btn.addEventListener('click', function() {
+        location.href = 'https://www.ssjj.cn/fab?from=lenovo_3276800001'
+    });
+    var time = 5;
+    setInterval(function() {
+        div.innerHTML = '您将在' + time + '跳转......';
+        time--;
+        if (time <= 0) {
+            location.href = 'https://www.jd.com/';
+        }
+    }, 1000)
+</script>
+
+</html>

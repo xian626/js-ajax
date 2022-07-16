@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script type="text/javascript">
+        var dog = {
+            name: '可可',
+            type: '拉布拉多',
+            age: '5岁',
+            color: '棕色',
+            skill: function() {
+                document.write('汪汪~');
+            }
+        };
+        console.log(dog.name);
+        console.log(dog.type);
+        console.log(dog.age);
+        console.log(dog.color);
+        dog.skill();
+    </script>
+    <!-- ---------------------------------------------------------------------------------------------- -->
+    <!-- <script type="text/javascript">
+			var dog=new Object();
+			dog={
+				name:'可可',
+				type:'拉布拉多',
+				age:'5岁',
+				color:'棕色',
+				skill:function(){
+					document.write('汪汪~');
+				}
+			};
+			console.log(dog.name);
+			console.log(dog.type);
+			console.log(dog.age);
+			console.log(dog.color);
+			dog.skill();
+		</script> -->
+    <!-- ------------------------------------------------------------------------------------------------- -->
+    <!-- <script type="text/javascript">
+			function Dog(sname,sage,stype,scolor)
+			{
+				this.name=sname;
+				this.age=sage;
+				this.type=stype;
+				this.color=scolor;
+				this.skill=function(sskill)
+				{
+					document.write(sskill);
+				}
+			};
+			var dog = new Dog('可可',8,'拉布拉多','棕色');
+			console.log(dog.name);
+			console.log(dog.color);
+			console.log(dog.age);
+			console.log(dog.type);
+			dog.skill('wangwang~');
+		</script> -->
+</head>
+
+<body>
+</body>
+
+</html>

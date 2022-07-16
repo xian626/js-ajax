@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .small {
+        position: fixed;
+        height: 180px;
+        width: 50px;
+        margin-top: 200px;
+    }
+    
+    .small div {
+        /* position: absolute; */
+        height: 50px;
+        width: 50px;
+        margin-top: 10px;
+        /* background: rgb(117, 121, 134); */
+        line-height: 50px;
+        text-align: center;
+        border: 2px solid black;
+    }
+    
+    .big {
+        width: 1000px;
+        margin: 0px auto;
+    }
+    
+    .big div {
+        height: 700px;
+        width: 1000px;
+        background: rgb(237, 126, 126);
+        margin-top: 10px;
+        text-align: center;
+        font-size: 40px;
+    }
+    
+    .color {
+        background: red;
+    }
+</style>
+<script src="js/jq.js"></script>
+
+<body>
+    <div class="small">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <div class="big">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+    </div>
+    <script>
+        $(function() {
+            var flag = true;
+            $('.small').find('div').on({
+                'click': function() {
+                    flag = false;
+                    $(this).addClass('color').siblings().removeClass();
+                    $('body,html').animate({
+                        scrollTop: $('.big').find('div').eq($(this).index()).offset().top
+                    }, function() {
+                        flag = true;
+                    });
+                }
+            })
+            $(window).scroll(function() {
+                if (flag) {
+                    $('.big div').each(function(i, e) {
+                        if ($(document).scrollTop() > $('.big div').eq(i).offset().top - 10) {
+                            $('.small div').eq(i).addClass('color').siblings().removeClass();
+                        }
+                    })
+                }
+            })
+
+        })
+    </script>
+</body>
+
+</html>

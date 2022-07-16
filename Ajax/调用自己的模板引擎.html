@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<div id="user-box"></div>
+
+<body>
+    <script type="text/html" id="tpl-user">
+        <div>姓名:{{name}}</div>
+        <div>年龄:{{age}}</div>
+        <div>性别:{{gender}}</div>
+        <div>住址:{{address}}</div>
+    </script>
+    <script>
+        var data = {
+            name: '张三',
+            age: 18,
+            gender: '男',
+            address: "************"
+        }
+        var htmlstr = template('tpl-user', data)
+        document.querySelector('#user-box').innerHTML = htmlstr;
+
+        function template(id, data) {
+            var str = document.getElementById(id).innerHTML
+            var pattern = /{{s*([a-zA-Z]+)\s*}}/;
+            var patternResult = null;
+            while (patternResult = pattern.exec(str)) {
+                str = str.replace(patternResult[0], data[patternResult[1]])
+            }
+            return str;
+        }
+    </script>
+
+</body>
+
+</html>

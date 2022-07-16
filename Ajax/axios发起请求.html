@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/axios.min.js"></script>
+</head>
+
+<body>
+    <button>axios发起GET请求</button>
+    <button>axios发起POST请求</button>
+    <button>直接使用axios发起GET请求</button>
+    <button>直接使用axios发起POST请求</button>
+    <script>
+        document.querySelectorAll('button')[0].addEventListener('click', function() {
+            var url = 'http://www.liulongbin.top:3006/api/get';
+            var paramsObj = {
+                name: 'zs',
+                age: 10,
+            }
+            axios.get(url, {
+                params: paramsObj
+            }).then(function(res) {
+                console.log(res.data);
+            })
+        })
+        document.querySelectorAll('button')[1].addEventListener('click', function() {
+            var url = 'http://www.liulongbin.top:3006/api/post';
+            var dataObj = {
+                location: '北京',
+                address: '北京'
+            };
+            axios.post(url, dataObj).then(function(res) {
+                console.log(res.data);
+            })
+        })
+        document.querySelectorAll('button')[2].addEventListener('click', function() {
+            axios({
+                method: 'GET',
+                url: 'http://www.liulongbin.top:3006/api/get',
+                params: {
+                    name: '黑仔',
+                    age: '18'
+                },
+            }).then(function(res) {
+                console.log(res.data);
+            })
+        })
+        document.querySelectorAll('button')[3].addEventListener('click', function() {
+            axios({
+                method: 'POST',
+                url: 'http://www.liulongbin.top:3006/api/post',
+                data: {
+                    name: '黑仔',
+                    age: '18'
+                },
+            }).then(function(res) {
+                console.log(res.data);
+            })
+        })
+    </script>
+</body>
+
+</html>

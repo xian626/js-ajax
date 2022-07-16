@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    </script>
+</head>
+<style>
+    #d1 {
+        height: 30px;
+        width: 50px;
+        background: #000;
+        color: aliceblue;
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    #d2 {
+        height: 500px;
+        width: 500px;
+        background: #000;
+        color: aliceblue;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div id="d1">显示</div>
+    <div id="d2">内容</div>
+
+</body>
+<script>
+    var div_1 = document.querySelector('#d1');
+    var div_2 = document.querySelector('#d2');
+    div_2.style.display = 'none';
+    div_1.onmouseover = function() {
+        div_2.style.display = 'block';
+    }
+    div_2.onmouseover = function() {
+        div_2.style.display = 'block';
+    }
+    div_2.onmouseout = function() {
+        div_2.style.display = 'none';
+    }
+    div_1.onmouseout = function() {
+        div_2.style.display = 'none';
+    }
+</script>
+
+</html>

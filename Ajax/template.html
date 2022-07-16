@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/template-web.js"></script>
+    <script src="js/jq.js"></script>
+</head>
+
+
+<body>
+    <div id="container"></div>
+    <script type="text/html" id="tpl">
+        <h1>{{name}}:{{age}}</h1>
+
+        {{@test}} {{if flaf==1}} flag的值是1{{else if flag==0}}flag的值是0{{/if}} {{each hobby}}
+        <li>{{$index}}{{$value}}</li>{{/each}} {{regTime|getTime}}
+    </script>
+    <script>
+        template.defaults.imports.getTime = function(data) {
+            var y = data.getFullYear();
+            var m = data.getMonth() + 1;
+            var d = data.getDate();
+            return y + '-' + m + '-' + d;
+        }
+        var data = {
+            name: '黑仔',
+            age: 18,
+            test: '<h3>原文输出</h3>',
+            flag: 0,
+            hobby: ['吃饭', '睡觉', '写代码'],
+            regTime: new Date(),
+        }
+        var html = template('tpl', data)
+            // console.log(html);
+        $('#container').html(html);
+    </script>
+</body>
+
+</html>

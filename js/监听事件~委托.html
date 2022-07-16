@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        height: 100px;
+        width: 100px;
+        background: red;
+    }
+</style>
+
+<body>
+    <button>按钮</button>
+    <ul>
+        <li>跟所有的烦恼说拜拜</li>
+        <li>跟所有的烦恼说拜拜</li>
+        <li>跟所有的烦恼说拜拜</li>
+        <li>跟所有的烦恼说拜拜</li>
+        <li>跟所有的烦恼说拜拜</li>
+    </ul>
+    <div>
+        <a href="javascript:;">链接</a>
+    </div>
+    <script>
+        var btn = document.querySelector('button');
+        // 事件监听
+        // btn.addEventListener('click', function() {
+        //     alert('111');
+        // })
+        // btn.addEventListener('click', function() {
+        //     alert('222');
+        // })
+
+        btn.addEventListener('click', fn);
+        // 删除事件
+        function fn() {
+            alert('111');
+            btn.removeEventListener('click', fn);
+        }
+        btn.addEventListener('click', fn1);
+
+        function fn1() {
+            alert('222');
+        }
+
+        // 事件委托
+        var ul = document.querySelector('ul');
+        var li = document.querySelectorAll('li');
+        ul.addEventListener('click', fn2, true);
+
+        function fn2(e) {
+            for (var i = 0; i < li.length; i++) {
+                li[i].style.backgroundColor = ''
+            }
+            e.target.style.backgroundColor = 'pink';
+        }
+        //阻止冒泡
+        var div = document.querySelector('div');
+        var a = document.querySelector('a');
+        div.addEventListener('click', fn3)
+
+        function fn3(e) {
+            alert('div');
+            // e.stopPropagation();
+        }
+        a.addEventListener('click', fn4)
+
+        function fn4(e) {
+            alert('a');
+            e.stopPropagation();
+        }
+    </script>
+</body>
+
+</html>

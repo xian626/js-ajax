@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+        border: none;
+    }
+    
+    thead {
+        background: blue;
+    }
+    
+    td {
+        border: solid #000 1px;
+        width: 100px;
+        height: 20px;
+        text-align: center;
+    }
+</style>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td> <input type="checkbox"></td>
+                <td>商品</td>
+                <td>价格</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td> <input type="checkbox"></td>
+                <td>手机</td>
+                <td>￥5000</td>
+            </tr>
+            <tr>
+                <td> <input type="checkbox"></td>
+                <td>电脑</td>
+                <td>￥1000</td>
+            </tr>
+            <tr>
+                <td> <input type="checkbox"></td>
+                <td>电视</td>
+                <td>￥3000</td>
+            </tr>
+            <script>
+                var theadCk = document.querySelector('thead').querySelector('input');
+                var tbodyCk = document.querySelector('tbody').querySelectorAll('input');
+                theadCk.onclick = function() {
+                    for (var i = 0; i < tbodyCk.length; i++) {
+                        tbodyCk[i].checked = theadCk.checked;
+                    }
+                }
+                for (var i = 0; i < tbodyCk.length; i++) {
+                    tbodyCk[i].onclick = function() {
+                        var flag = true;
+                        for (var i = 0; i < tbodyCk.length; i++) {
+                            if (!tbodyCk[i].checked) {
+                                flag = false;
+                            }
+                        }
+                        theadCk.checked = flag;
+                    }
+                }
+            </script>
+        </tbody>
+
+    </table>
+</body>
+
+</html>

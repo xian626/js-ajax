@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+        border: none;
+    }
+    
+    thead {
+        background: blue;
+    }
+    
+    td {
+        border: solid #000 1px;
+        width: 100px;
+        height: 20px;
+        text-align: center;
+    }
+    
+    tr1 {
+        background: pink;
+    }
+</style>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+                <td>1</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>3</td>
+                <td>3</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>4</td>
+                <td>4</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>5</td>
+                <td>5</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>6</td>
+                <td>6</td>
+                <td>6</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+                <td>7</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var tr = document.querySelector('tbody').querySelectorAll('tr');
+        for (var i = 0; i < tr.length; i++) {
+            tr[i].onmouseover = function() {
+                // for (var i = 0; i < tr.length; i++) {
+                //     tr[i].style.backgroundColor = '';
+                // }
+                this.style.backgroundColor = 'blue';
+            }
+            tr[i].onmouseout = function() {
+                this.style.backgroundColor = '';
+            }
+        }
+    </script>
+</body>
+
+</html>

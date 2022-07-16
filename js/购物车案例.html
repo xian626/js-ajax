@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .all {
+        height: 100px;
+        width: 1000px;
+        background: whitesmoke;
+        margin: 10px auto;
+        line-height: 100px;
+    }
+    
+    .all .top {
+        float: left;
+    }
+    
+    .all .top span {
+        margin-left: 100px;
+    }
+    
+    .all .d_money {
+        float: left;
+        margin-left: 100px;
+    }
+    
+    .all .d_money button {
+        width: 22px;
+        text-align: center;
+    }
+    
+    .all .d_money input {
+        width: 18px;
+        text-align: center;
+    }
+    
+    .all .all_money {
+        float: left;
+        margin-left: 100px;
+    }
+    
+    .all a {
+        margin-right: 100px;
+        float: right;
+        text-decoration: none;
+        color: black;
+    }
+    
+    .total_money {
+        float: right;
+        margin-right: 500px
+    }
+    
+    .check {
+        /* float: left; */
+        margin-left: 150px;
+    }
+</style>
+<script src="js/jq.js"></script>
+
+<body>
+    <input type="checkbox" class="check">
+    <div class="all">
+        <div class="top">
+            <input type="checkbox" class="choose"><span>11111</span><span class="li_money">￥10</span>
+        </div>
+        <div class="d_money">
+            <button class="unadd">-</button>
+            <input type="text" class="money" value="1">
+            <button class="add">+</button>
+        </div>
+        <div class="all_money">￥10</div>
+        <a href="javascript:;">删除</a>
+    </div>
+    <div class="all">
+        <div class="top">
+            <input type="checkbox" class="choose"><span>22222</span><span class="li_money">￥20</span>
+        </div>
+        <div class="d_money">
+            <button class="unadd">-</button>
+            <input type="text" class="money" value="1">
+            <button class="add">+</button>
+        </div>
+        <div class="all_money">￥20</div>
+        <a href="javascript:;">删除</a>
+    </div>
+    <div class="all">
+        <div class="top">
+            <input type="checkbox" class="choose"><span>33333</span><span class="li_money">￥30</span>
+        </div>
+        <div class="d_money">
+            <button class="unadd">-</button>
+            <input type="text" class="money" value="1">
+            <button class="add">+</button>
+        </div>
+        <div class="all_money">￥30</div>
+        <a href="javascript:;">删除</a>
+    </div>
+    <input type="checkbox" class="check">
+    <div class="total_money"></div>
+    <script>
+        $(function() {
+            $('.check').change(function() {
+                //     console.log($(this).prop('checked'));
+                $(".all").find('.choose').prop('checked', $(this).prop('checked'))
+                $('.check').prop('checked', $(this).prop('checked'))
+            })
+            $('.all').find('.choose').change(function() {
+                console.log(1);
+                if ($('.all').find('.choose:checked').length == $('.all').find('.choose').length) {
+                    $('.check').prop('checked', true);
+                }
+            })
+            $('.add').click(function() {
+                $(this).siblings('.money').val(parseInt($(this).siblings('.money').val()) + 1);
+                var money = $(this).parent().parent().find('.li_money').text();
+                money = money.slice(1);
+                money = parseInt(money);
+                $(this).parent().siblings(".all_money").html("￥" + money * $(this).siblings('.money').val())
+                all_money()
+            })
+            $('.unadd').click(function() {
+                $(this).siblings('.money').val(parseInt($(this).siblings('.money').val()) - 1);
+                if ($(this).siblings('.money').val() <= 0) {
+                    $(this).siblings('.money').val(0)
+                }
+                var money = $(this).parent().parent().find('.li_money').text();
+                money = money.slice(1);
+                money = parseInt(money);
+                $(this).parent().siblings(".all_money").html("￥" + money * $(this).siblings('.money').val())
+                all_money()
+            })
+            all_money()
+
+            function all_money() {
+                var money = 0;
+                $('.all').find('.all_money').html;
+                $('.all').find('.all_money').each(function(i, dom) {
+                    money += parseInt($(dom).html().slice(1));
+                    // console.log(money);
+                })
+                $('.total_money').html("总价：￥" + money)
+            }
+            $('.all').find('a').click(function() {
+                $(this).parent('.all').remove();
+                all_money()
+            })
+        })
+    </script>
+</body>
+
+</html>

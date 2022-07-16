@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var data = {
+            id: 1,
+            name: '薛之谦',
+            mgs: {
+                id: 11,
+                name: '小宁',
+            }
+        }
+
+        function deepCopy(newdata, olddata) {
+            for (k in olddata) {
+                var item = olddata[k];
+                if (item instanceof Array) {
+                    newdata[k] = [];
+                    deepCopy(newdata[k], item);
+                } else if (item instanceof Object) {
+                    newdata[k] = {};
+                    deepCopy(newdata[k], item)
+                } else {
+                    newdata[k] = item;
+                }
+            }
+            return newdata;
+        }
+        var o = {};
+        deepCopy(o, data)
+        console.log(data);
+        console.log(o);
+    </script>
+</body>
+
+</html>

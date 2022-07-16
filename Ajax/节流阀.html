@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/jq.js"></script>
+</head>
+<style>
+    html,body{
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+    }
+    img {
+        position:absolute;
+    }
+</style>
+<body>
+    <img src="img/angel.gif" id="angel">
+    <script>
+        $(function(){
+            var times=null;
+            $(document).on('mousemove',function(e){
+                if(times){return};
+                times=setTimeout(function(){
+                    $('#angel').css('top',e.pageY).css('left',e.pageX);
+                    times=null;
+                },50)
+            })
+        })
+    </script>
+</body>
+
+</html>

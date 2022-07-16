@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        height: 100px;
+        width: 100px;
+        background: purple;
+        position: absolute;
+        top: 200px;
+        left: 0px;
+    }
+</style>
+<script src="js/动画.js"></script>
+
+<body>
+    <div></div>
+    <button>按钮1</button>
+    <button>按钮2</button>
+</body>
+<script>
+    var div = document.querySelector('div');
+    var btns = document.querySelectorAll('button');
+
+    btns[0].addEventListener('click', function() {
+        // console.log(div.offsetLeft);
+        animate(div, 500, function() {
+            div.style.backgroundColor = 'red';
+        });
+
+    });
+    btns[1].addEventListener('click', function() {
+        animate(div, 0, function() {
+            div.style.backgroundColor = 'purple';
+        })
+    })
+</script>
+
+</html>

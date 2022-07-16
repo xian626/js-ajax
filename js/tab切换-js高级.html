@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        cursor: default;
+    }
+    
+    .Tabbox {
+        position: absolute;
+        height: 300px;
+        width: 500px;
+        margin-left: 400px;
+        margin-top: 20px;
+    }
+    
+    .nav {
+        width: 500px;
+        height: 30px;
+        background-color: whitesmoke;
+        line-height: 30px;
+        /* border: 1px gray solid; */
+        /* border-collapse: collapse; */
+    }
+    
+    li {
+        list-style: none;
+        float: left;
+        /* margin-left: 10px; */
+        height: 28px;
+        width: 60px;
+        text-align: center;
+        background-color: whitesmoke;
+        border: 1px solid black;
+        /* border-radius: 1px; */
+        border-collapse: collapse;
+    }
+    
+    li input {
+        width: 40px;
+    }
+    
+    .li_first {
+        border-bottom: none;
+        /* border-collapse: collapse; */
+        background-color: azure;
+    }
+    
+    .nav ul li span:nth-child(2) {
+        height: 10px;
+        width: 10px;
+        background: black;
+        float: right;
+        color: aliceblue;
+        line-height: 10px;
+        font-size: 1px;
+    }
+    
+    .add {
+        float: right;
+        height: 30px;
+        width: 50px;
+        line-height: 30px;
+        text-align: center;
+    }
+    
+    .add span {
+        background-color: whitesmoke;
+    }
+    
+    .tab {
+        width: 500px;
+        height: 270px;
+        border: 1px gray solid;
+        border-top: none;
+        background-color: whitesmoke;
+    }
+    
+    .tab section {
+        display: none;
+        height: 200px;
+        width: 500px;
+    }
+    
+    .tab section input {
+        height: 200px;
+        width: 498px;
+        outline: none;
+        border: 1px gray solid;
+    }
+    
+    .tab .s_first {
+        display: block;
+    }
+</style>
+
+<body>
+    <div class="Tabbox">
+        <nav class="nav">
+            <ul id="Tab">
+                <li class="li_first"> <span>一</span><span>x</span></li>
+                <li><span>二</span><span>x</span></li>
+                <li><span>三</span><span>x</span></li>
+            </ul>
+            <div class="add">
+                <span>+</span>
+            </div>
+        </nav>
+
+        <div class="tab">
+            <section class="s_first">一</section>
+            <section>二</section>
+            <section>三</section>
+        </div>
+    </div>
+    <script>
+        var that;
+        class Tab {
+            constructor(id) {
+                this.main = document.querySelector(id);
+                this.lis = this.main.querySelectorAll('li');
+                this.sections = this.main.querySelectorAll('section');
+                this.btn = this.main.querySelector('.add');
+                this.ul = this.main.querySelector('.nav ul:first-child');
+                this.tab = this.main.querySelector('.tab');
+                this.delete = this.ul.querySelectorAll('span:nth-child(2)');
+                // console.log(this.delete);
+                that = this;
+                // console.log(this.delete);
+                this.init();
+            }
+            init() {
+                // console.log(1);
+                this.getNode();
+                // console.log(this.spans);
+                this.btn.onclick = this.addTab.bind(this.btn, this);
+                for (var i = 0; i < this.lis.length; i++) {
+                    this.lis[i].index = i;
+                    this.lis[i].onclick = this.change.bind(this.lis[i], this);
+                    this.delete[i].onclick = this.deleteTab.bind(this.delete[i], this);
+                    this.spans[i].ondblclick = this.select;
+                    this.sections[i].ondblclick = this.select;
+                }
+            }
+            getNode() {
+                this.spans = this.ul.querySelectorAll('span:nth-child(1)')
+                this.lis = this.main.querySelectorAll('li');
+                this.sections = this.main.querySelectorAll('section');
+                this.delete = this.ul.querySelectorAll('span:nth-child(2)');
+            }
+            change(that) {
+                // console.log(1);
+                that.clear();
+                this.className = 'li_first'
+                that.sections[this.index].className = 's_first'
+            }
+            clear() {
+                for (var i = 0; i < this.lis.length; i++) {
+                    this.lis[i].className = '';
+                    that.sections[this.lis[i].index].className = '';
+                }
+            }
+            addTab(that) {
+                that.clear();
+                var li = '<li class="li_first"><span>新标签</span><span>x</span></li>'
+                var section = '<section class="s_first">点击编辑内容</section>'
+                    // console.log(that.tab);
+                that.ul.insertAdjacentHTML('beforeend', li);
+                that.tab.insertAdjacentHTML('beforeend', section);
+                that.init();
+            }
+            deleteTab(that, e) {
+                e.stopPropagation();
+                var index = this.parentNode.index;
+                that.lis[index].remove();
+                that.sections[index].remove();
+                that.init()
+                if (document.querySelector('.li_first')) return;
+                index--;
+                that.lis[index] && that.lis[index].click();
+            }
+            select() {
+                var str = this.innerHTML;
+                window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+                // console.log(11);
+                this.innerHTML = '<input>'
+                var input = this.querySelector('input');
+                input.value = str;
+                input.select();
+                input.onblur = function() {
+                    this.parentNode.innerHTML = this.value;
+                }
+                input.onkeyup = function(e) {
+                    if (e.keyCode === 13) {
+                        this.blur();
+                    }
+                }
+            }
+        }
+        var tab = new Tab('.Tabbox')
+    </script>
+</body>
+
+</html>

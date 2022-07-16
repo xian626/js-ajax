@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			var sum=100;
+			function money()
+			{
+				var n=prompt("请输入您要进行的操作 \n 1.存钱\n 2.取钱\n 3.显示余额\n 4.退出")
+				switch(n)
+				{
+					case '1':sum+=prompt('请输入存钱金额')*1;alert(sum);money();break;
+					case '2':sum-=prompt('请输入取钱金额')*1;alert(sum);money();break;
+					case '3':alert(sum);money();break;
+					case '4':confirm()? 0:money();break;
+				}
+			}
+			money();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    用户名：<input type="text" id="d1"><br> 密码：
+    <input type="password" id="d2"><br>
+    <button>添加</button>
+    <button>查看</button>
+    <button>删除</button>
+    <button>删除全部</button>
+</body>
+<script>
+    var d1 = document.querySelector('#d1');
+    var d2 = document.querySelector('#d2');
+    var btn = document.querySelectorAll('button');
+    btn[0].addEventListener('click', function() {
+        localStorage.setItem(d1.value, d2.value);
+        d1.value = '';
+        d2.value = '';
+    })
+    btn[1].addEventListener('click', function() {
+        alert(localStorage.getItem(d1.value))
+        d1.value = '';
+        d2.value = '';
+    })
+    btn[2].addEventListener('click', function() {
+        localStorage.removeItem(d1.value);
+        d1.value = '';
+        d2.value = '';
+    })
+    btn[3].addEventListener('click', function() {
+        localStorage.clear();
+        d1.value = '';
+        d2.value = '';
+    })
+</script>
+
+</html>
